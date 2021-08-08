@@ -1,24 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+
+import { useStoreActions, useStoreState } from './store';
+import { ObjectiveWithChildren } from './utils/types/objective';
+
 import styles from './App.module.scss';
+import ObjectiveList from './container/ObjectiveList';
 
 function App() {
+  // store
+  const { map } = useStoreState((state) => state.objective);
+  const { getObjectives } = useStoreActions((actions) => actions.objective);
+
+  // state
+  const [objectiveList, setObjectiveList] = useState<ObjectiveWithChildren[]>(
+    [],
+  );
+
+  /**
+   * fetch all objectives
+   */
+  useEffect(() => {
+    getObjectives();
+  }, []);
+
+  /**
+   * create and set list of parent objective on change of objectives map
+   */
+  useEffect(() => {
+    const list = Object.values(map);
+    setObjectiveList(list);
+  }, [map]);
+
   return (
     <div className={styles.app}>
-      <header className={styles.appHeader}>
-        <img src={logo} className={styles.appLogo} alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ObjectiveList objectiveList={objectiveList} />
     </div>
   );
 }
