@@ -1,8 +1,13 @@
 import { createStore, createTypedHooks } from 'easy-peasy';
+import notification, { NotificationModel } from './notification';
 
-export interface StoreModel {}
+export interface StoreModel {
+  notification: NotificationModel;
+}
 
-const model: StoreModel = {};
+const model: StoreModel = {
+  notification,
+};
 
 const store = createStore(model);
 const { useStoreActions, useStoreDispatch, useStoreState } =
