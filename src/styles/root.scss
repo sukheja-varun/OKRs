@@ -1,5 +1,6 @@
 @import-normalize; /* bring in normalize.css styles */
 @import 'color';
+@import 'font-size';
 
 html {
   box-sizing: border-box;
@@ -17,9 +18,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  height: 100%;
+  font-size: var(--font-normal);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text-dark);
+  background: var(--color-background);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.pointer {
+  cursor: pointer;
 }
