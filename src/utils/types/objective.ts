@@ -8,3 +8,7 @@ export interface Objective {
   parent_objective_id: string;
   archived: string;
 }
+
+export interface ObjectiveWithChildren extends Objective {
+  children: Objective[];
+}
