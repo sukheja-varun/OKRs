@@ -5,6 +5,7 @@ import { ObjectiveWithChildren } from './utils/types/objective';
 
 import styles from './App.module.scss';
 import ObjectiveList from './container/ObjectiveList';
+import Header from './container/Header';
 
 function App() {
   // store
@@ -33,6 +34,7 @@ function App() {
 
   return (
     <div className={styles.app}>
+      <Header />
       <ObjectiveList objectiveList={objectiveList} />
     </div>
   );
