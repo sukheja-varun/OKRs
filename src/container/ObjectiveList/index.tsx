@@ -1,21 +1,33 @@
 import React, { memo } from 'react';
 import Accordion from '../../components/Accordion';
-import { ObjectiveWithChildren } from '../../utils/types/objective';
+import { Objective, ObjectiveWithChildren } from '../../utils/types/objective';
 
-// import styles from'./index.module.scss';
+import styles from './index.module.scss';
 
 interface ObjectiveListProps {
   objectiveList: ObjectiveWithChildren[];
+  onChildClick: (child: Objective) => void;
 }
 const ObjectiveList: React.FC<ObjectiveListProps> = (props) => {
-  const { objectiveList } = props;
+  const { objectiveList, onChildClick } = props;
+
   return (
-    <div>
+    <div className={styles.container}>
       {objectiveList.map((item) => (
         <Accordion key={item.id} title={item.title}>
           <ol type="a">
             {item.children.map((childObjective) => (
-              <li key={childObjective.id}>{childObjective.title}</li>
+              <li
+                role="presentation"
+                key={childObjective.id}
+                onClick={() => onChildClick(childObjective)}
+                onKeyPress={(e) =>
+                  e.key === 'enter' && onChildClick(childObjective)
+                }
+                className="pointer"
+              >
+                {childObjective.title}
+              </li>
             ))}
           </ol>
         </Accordion>

@@ -1,0 +1,28 @@
+.app {
+  dl {
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    margin: 10px 0;
+  }
+  dt {
+    float: left;
+    width: 30%;
+    /* adjust the width; make sure the total of both is 100% */
+    padding: 0;
+    margin: 0;
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+    &::after {
+      content: ':';
+    }
+  }
+  dd {
+    float: left;
+    width: 70%;
+    /* adjust the width; make sure the total of both is 100% */
+    padding: 0;
+    margin: 0;
+  }
+}
